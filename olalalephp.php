@@ -86,7 +86,7 @@ function SearchfornoEmptySpace($filed,$number_of_lines,$number_of_columns)
 				exit();
 			}
 			else {
-				GoingThroughAndDuplicate($filed,$number_of_lines,$number_of_columns);
+				return GoingThroughAndDuplicate($filed,$number_of_lines,$number_of_columns);
 				exit();
 			}
 		}
@@ -126,6 +126,7 @@ function GoingThroughAndDuplicate($filed, $number_of_lines, $number_of_columns)
 			}
 		}
 	}
+	return $SecondTableau;
 }
 
 
@@ -173,5 +174,5 @@ function GoingThroughAndDuplicate($filed, $number_of_lines, $number_of_columns)
 
 
 
-readmap('plateau.txt');
+readmap('expmap.txt');
 ?>
