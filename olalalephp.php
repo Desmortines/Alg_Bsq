@@ -49,7 +49,32 @@ function readmap($file)
 
 function square($filed, $number_of_columns, $number_of_lines,$Number)
 {
-	SearchfornoEmptySpace($filed,$number_of_lines,$number_of_columns);
+	$SecondTab = SearchfornoEmptySpace($filed,$number_of_lines,$number_of_columns);
+	$GrandCarre = 0;
+    for ($line=0;$line < $number_of_lines; $line++) {
+        for ($colone=0;$colone < $number_of_columns; $colone++) {
+            if ($SecondTab[$line][$colone]> $GrandCarre) {
+                $GrandCarre= $SecondTab[$line][$colone];
+            }
+        }
+    }
+    $TestableCarre=$GrandCarre;
+   Recursive($filed,$number_of_columns,$number_of_lines,$TestableCarre,$GrandCarre);
+   print_r($filed);
+}
+
+function Recursive($filed , $number_of_columns, $number_of_lines,$TestableCarre,$GrandCarre) {
+    for ($l=$GrandCarre;$l < $number_of_lines; $l++) {
+        for ($c=$GrandCarre;$c < $number_of_columns; $c++) {
+            while ($TestableCarre>= 0) {
+                if ($filed[$l][$c] == "." && $filed[$l-$TestableCarre][$c] == "." && $filed[$l][$c-$TestableCarre] == "." && $filed[$l-$TestableCarre][$c-$TestableCarre] == ".") {
+                    $filed[$l][$c]="X";
+                    //Recursive($filed,$number_of_columns,$number_of_lines,$TestableCarre-1,$GrandCarre);
+                }
+
+            }
+        }
+    }
 }
 
 function SearchfornoEmptySpace($filed,$number_of_lines,$number_of_columns)
